@@ -11,19 +11,38 @@ class Menu extends Component {
         console.log('menu component constructor is invoked');
     }
     componentDidMount() {
+        //console.log(this.state.selectedDish);
         console.log('menu component componentdidMount is invoked');
     }
-    onDishSelect(dish){
-
+    onDishSelect(dish) {
         this.setState({ selectedDish: dish });
-       
     }
-   
+    renderDish(dish) {
+        if (dish != null) {
+            return (
+                <Card>
+                    {/* <CardImg width="100%" src={dish.image} alt={dish.name} /> */}
+                    <CardBody>
+                        <CardTitle>{dish.name}</CardTitle>
+                        <CardText>{dish.description}</CardText>
+                    </CardBody>
+
+                </Card>
+            );
+
+        }
+        else {
+            return (
+                <div></div>
+            );
+        }
+    }
     render() {
         const menu = this.props.dishes.map((dish) => {
             return (
                 <div key={dish.id} className="col-12 col-md-5 m-1">
-                    <Card onClick={() => this.onDishSelect(dish)}>
+                     <Card key={dish.id}
+                        onClick={() => this.props.onClick(dish.id)}>
                         <CardImg width="100%" src={dish.image} alt={dish.name} />
                         <CardImgOverlay>
                             <CardTitle>{dish.name}</CardTitle>
@@ -39,7 +58,7 @@ class Menu extends Component {
                     {menu}
                 </div>
                 <div className="row">
-                 <DishdetailComponent dish={this.state.selectedDish} />
+                <DishdetailComponent dish={this.state.selectedDish} />
                 </div>
             </div>
         );

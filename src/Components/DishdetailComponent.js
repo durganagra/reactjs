@@ -1,5 +1,27 @@
 import React, { Component } from 'react';
 import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle } from 'reactstrap';
+const comments = {
+    list :{
+     list1: 'Imagine all the eatbles,living in conFusion ',
+     list2: '--john lemon,',
+     list3: 'Send anyone to heaven,I wish I could get my mother-in-law to eat it!',
+     list4: '--Paul McVites',
+     list5: 'Eat it, just eat it! ',
+     list6: '--Michael Jaikishan',
+     list7: ' Ultimate,reaching for the stars! ',
+     list8: '--ringo Starry',
+     list9:'Its your birthday,were gonna party!',
+     list10:'--25 Cent'
+ 
+    },
+         Dates : {
+             Date1: 'Oct17,2012',
+             Date2: 'Sep 04, 2014',
+             Date3: 'feb 14, 2015',
+             Date4: 'Dec 03, 2015',
+             Date5: 'Dec 03, 2011'
+         }
+ }
 class DishdetailComponent extends React.Component {
     constructor(props) {
         super();
@@ -30,28 +52,28 @@ class DishdetailComponent extends React.Component {
                 <div className="col-12 col-md-5 m-1">
                 <Card>
                         <CardBody>
-                        <CardTitle>Comments}</CardTitle>
+                        <CardTitle>Comments</CardTitle>
                             <CardText>
                                 <div>
-                                    <p>Imagine all the eatbles,living in conFusion!</p>
-                                    <p>-- John Lemon, Oct 17,2012</p>
-                                    <p>Sends anyone to heaven, I wish I could get my mother-in-law to eat it!</p>
-                                    <p>--Paul McVites,Sep 06,2014</p>
-                                    <p>Eat it, Just eat it!</p>
+                                 <ul class="list-unstyled">
+                                     <li>{comments.list.list1}</li>
+                                     <li>{comments.list.list2},{new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comments.Dates.Date1)))} </li>
+                                     <li>{comments.list.list3}</li>
+                                     <li>{comments.list.list4}, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comments.Dates.Date2)))} </li>
+                                     <li>{comments.list.list5}</li>
+                                     <li>{comments.list.list6}, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comments.Dates.Date3)))} </li>
+                                     <li>{comments.list.list7}</li>
+                                     <li>{comments.list.list8},{new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comments.Dates.Date4)))} </li>
+                                     <li>{comments.list.list9}</li>
+                                     <li>{comments.list.list10},{new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comments.Dates.Date5)))} </li>
+                                 </ul>
                                 </div>
                             </CardText>
                         </CardBody>
-
                     </Card>
                 </div>
-                </div>
-              
+                </div>      
             </div>
-              
-                
-              
-
-
             );
 
         }
@@ -60,17 +82,6 @@ class DishdetailComponent extends React.Component {
                 <div></div>
             );
         }
-
-        //    return(
-        //     <div  className="col-12 col-md-5 m-1">
-        //     {/* <Card >
-        //         <CardImg width="100%" src={this.props.dish.image} alt={this.props.dish.name} />
-        //         <CardImgOverlay>
-        //             <CardTitle>{this.props.dish.name}</CardTitle>
-        //         </CardImgOverlay>
-        //     </Card> */}
-        // </div>
-        //    );
     }
 }
 export default DishdetailComponent;
