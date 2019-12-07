@@ -5,6 +5,7 @@ import './App.css';
 import { Navbar, NavbarBrand } from 'reactstrap';
 import Menu from './Components/MenuComponent';
 import { DISHES } from './shared/dishes';
+import DishdetailComponent from './Components/DishdetailComponent';
 class App extends React.Component {
   constructor(props){
     super(props);
@@ -21,6 +22,7 @@ class App extends React.Component {
           </div>
         </Navbar>
         <Menu dishes={this.state.dishes}/>
+        <DishdetailComponent dishes={this.state.dishes}/>
       </div>
     )
   };
