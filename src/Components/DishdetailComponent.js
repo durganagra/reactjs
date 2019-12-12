@@ -1,27 +1,29 @@
 import React, { Component } from 'react';
-import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle } from 'reactstrap';
-const comments = {
-    list: {
-        list1: 'Imagine all the eatbles,living in conFusion ',
-        list2: '--john lemon,',
-        list3: 'Send anyone to heaven,I wish I could get my mother-in-law to eat it!',
-        list4: '--Paul McVites',
-        list5: 'Eat it, just eat it! ',
-        list6: '--Michael Jaikishan',
-        list7: ' Ultimate,reaching for the stars! ',
-        list8: '--ringo Starry',
-        list9: 'Its your birthday,were gonna party!',
-        list10: '--25 Cent'
+//import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle } from 'reactstrap';
+import { Card, CardImg, CardText, CardBody, CardTitle, Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import { Link } from 'react-router-dom';
+// const comments = {
+//     list: {
+//         list1: 'Imagine all the eatbles,living in conFusion ',
+//         list2: '--john lemon,',
+//         list3: 'Send anyone to heaven,I wish I could get my mother-in-law to eat it!',
+//         list4: '--Paul McVites',
+//         list5: 'Eat it, just eat it! ',
+//         list6: '--Michael Jaikishan',
+//         list7: ' Ultimate,reaching for the stars! ',
+//         list8: '--ringo Starry',
+//         list9: 'Its your birthday,were gonna party!',
+//         list10: '--25 Cent'
 
-    },
-    Dates: {
-        Date1: 'Oct17,2012',
-        Date2: 'Sep 04, 2014',
-        Date3: 'feb 14, 2015',
-        Date4: 'Dec 03, 2015',
-        Date5: 'Dec 03, 2011'
-    }
-}
+//     },
+//     Dates: {
+//         Date1: 'Oct17,2012',
+//         Date2: 'Sep 04, 2014',
+//         Date3: 'feb 14, 2015',
+//         Date4: 'Dec 03, 2015',
+//         Date5: 'Dec 03, 2011'
+//     }
+// }
 // class DishdetailComponent extends React.Component {
 //     constructor(props) {
 //         super();
@@ -112,14 +114,15 @@ function RenderDish({ dish }) {
 
 }
 
-function RenderComments({ }) {
-        return (
-                        <Card>
-                            <CardBody>
-                                <CardTitle>Comments</CardTitle>
-                                <CardText>
-                                    <div>
-                                        <ul class="list-unstyled">
+function RenderComments({ comments }) {
+    return (
+        <Card>
+            <CardBody>
+                {/* <CardTitle>Comments</CardTitle> */}
+                <CardText>
+                    {comments}
+                    <div>
+                        {/* <ul class="list-unstyled">
                                             <li>{comments.list.list1}</li>
                                             <li>{comments.list.list2},{new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit' }).format(new Date(Date.parse(comments.Dates.Date1)))} </li>
                                             <li>{comments.list.list3}</li>
@@ -130,12 +133,12 @@ function RenderComments({ }) {
                                             <li>{comments.list.list8},{new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit' }).format(new Date(Date.parse(comments.Dates.Date4)))} </li>
                                             <li>{comments.list.list9}</li>
                                             <li>{comments.list.list10},{new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit' }).format(new Date(Date.parse(comments.Dates.Date5)))} </li>
-                                        </ul>
-                                    </div>
-                                </CardText>
-                            </CardBody>
-                        </Card>
-        );
+                                        </ul> */}
+                    </div>
+                </CardText>
+            </CardBody>
+        </Card>
+    );
 }
 
 const DishDetail = (props) => {
@@ -143,9 +146,24 @@ const DishDetail = (props) => {
         return (
             <div className="container">
                 <div className="row">
-                    <div className="col-12 col-md-5 m-1"> <RenderDish dish={props.dish} /></div >
-                    <div className="col-12 col-md-5 m-1"> <RenderComments  />  </div></div>
+                    <Breadcrumb>
 
+                        <BreadcrumbItem><Link to="/menu">Menu</Link></BreadcrumbItem>
+                        <BreadcrumbItem active>{props.dish.name}</BreadcrumbItem>
+                    </Breadcrumb>
+                    <div className="col-12">
+                        <h3>{props.dish.name}</h3>
+                        <hr />
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-12 col-md-5 m-1">
+                        <RenderDish dish={props.dish} />
+                    </div>
+                    <div className="col-12 col-md-5 m-1">
+                        <RenderComments comments={props.comments} />
+                    </div>
+                </div>
             </div>
         );
     }
